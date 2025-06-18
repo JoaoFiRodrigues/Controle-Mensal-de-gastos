@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Controle de Gastos Mensal</title>
+  <link rel="stylesheet" href="style.css">  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Controle de Gastos Mensal</h1>
+
+    <label>Descrição</label>
+    <input type="text" id="descricao" placeholder="Ex: Mercado">
+
+    <label>Valor (R$)</label>
+    <input type="number" id="valor" step="0.01" placeholder="Ex: 50.00">
+
+    <label>Data</label>
+    <input type="date" id="data">
+
+    <label>Categoria</label>
+    <select id="categoria">
+      <option>Manutenção</option>  
+      <option>Alimentação</option>
+      <option>Transporte</option>
+      <option>Lazer</option>
+      <option>Outros</option>
+    </select>
+
+    <button onclick="adicionarGasto()">Adicionar Gasto</button>
+
+    <div class="filtro">
+      <label>Filtrar por categoria:</label>
+      <select id="filtroCategoria" onchange="listarGastos()">
+        <option value="">Todas</option>
+        <option>Manutenção</option> 
+        <option>Alimentação</option>
+        <option>Transporte</option>
+        <option>Lazer</option>
+        <option>Outros</option>
+      </select>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Descrição</th>
+          <th>Valor</th>
+          <th>Data</th>
+          <th>Categoria</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaGastos"></tbody>
+    </table>
+    
+
+
+    <div class="total" id="totalGastos">Total: R$ 0,00</div>
+
+    <h3>Gráfico por Categoria</h3>
+    <canvas id="graficoGastos"></canvas>
+
+    <button onclick="exportarPDF()">Exportar para PDF</button>
+    <button onclick="resetarGastos()">Resetar Todos os Gastos</button>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
